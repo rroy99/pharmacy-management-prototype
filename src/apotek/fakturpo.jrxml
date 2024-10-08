@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b4271fe5-b399-4a26-a0d2-99e7130d4b59">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="dataset1" uuid="efde8bf1-0490-4eae-a50e-bc5bb1709484"/>
+	<subDataset name="New Dataset 1" uuid="2937c813-b16d-4c7f-9817-2569b881f5a0">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     obat.`kodeobat` AS obat_kodeobat,
+     obat.`namaobat` AS obat_namaobat,
+     obat.`harga` AS obat_harga,
+     obat.`stock` AS obat_stock,
+     obat.`type` AS obat_type,
+     obat.`tglproduksi` AS obat_tglproduksi,
+     obat.`tglexpired` AS obat_tglexpired
+FROM
+     `obat` obat]]>
+		</queryString>
+		<field name="obat_kodeobat" class="java.lang.String"/>
+		<field name="obat_namaobat" class="java.lang.String"/>
+		<field name="obat_harga" class="java.lang.Integer"/>
+		<field name="obat_stock" class="java.lang.Integer"/>
+		<field name="obat_type" class="java.lang.String"/>
+		<field name="obat_tglproduksi" class="java.sql.Date"/>
+		<field name="obat_tglexpired" class="java.sql.Date"/>
+	</subDataset>
+	<parameter name="tglpo" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     po.`idorder` AS po_idorder,
+     po.`tglpo` AS po_tglpo,
+     po.`po_idsupplier` AS po_po_idsupplier,
+     po.`po_idapoteker` AS po_po_idapoteker,
+     po.`po_kodeobat` AS po_po_kodeobat,
+     po.`po_jumlah` AS po_po_jumlah,
+     po.`po_totalbayar` AS po_po_totalbayar,
+     supplier.`namasupplier` AS supplier_namasupplier,
+     apoteker.`namaapoteker` AS apoteker_namaapoteker
+FROM
+     `supplier` supplier INNER JOIN `po` po ON supplier.`idsupplier` = po.`po_idsupplier`
+     INNER JOIN `apoteker` apoteker ON po.`po_idapoteker` = apoteker.`idapoteker`
+WHERE
+ po.`tglpo` = $P{tglpo}]]>
+	</queryString>
+	<field name="po_idorder" class="java.lang.Integer"/>
+	<field name="po_tglpo" class="java.sql.Date"/>
+	<field name="po_po_idsupplier" class="java.lang.String"/>
+	<field name="po_po_idapoteker" class="java.lang.String"/>
+	<field name="po_po_kodeobat" class="java.lang.String"/>
+	<field name="po_po_jumlah" class="java.lang.Integer"/>
+	<field name="po_po_totalbayar" class="java.lang.Integer"/>
+	<field name="supplier_namasupplier" class="java.lang.String"/>
+	<field name="apoteker_namaapoteker" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="93" width="555" height="1" uuid="af785de1-4282-4e70-a5cf-939836a6ce35"/>
+			</line>
+			<image>
+				<reportElement x="-14" y="13" width="152" height="69" uuid="df8acb78-cb0b-4450-9308-2014dc28c5f5"/>
+				<imageExpression><![CDATA["C:\\Users\\user\\OneDrive - Yayasan Vitka\\Documents\\NetBeansProjects\\apotek\\download.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="52" y="13" width="100" height="20" uuid="66b448e4-8d72-4473-8741-f0f604fb8e11"/>
+				<textElement>
+					<font size="12" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[APOTEK GREEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="33" width="258" height="20" uuid="4b682c96-67aa-4c7b-9913-9fff14ea6f12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[No. izin Praktik : 503/006/DPM-PTSP/kes/xi/2024]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="49" width="318" height="20" uuid="4a506a32-ce2e-4464-b89c-74e308fe58e3"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Tiban Lama, Kec. Sekupang, Kota Batam, Kepulauan Riau 29424]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="69" width="399" height="20" uuid="d5d3eae3-756c-413b-9377-ae13681accf0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Telp. (0778) 326623, Email : apotekgreen@gmail.com, Web : apotekgreen.co.id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="73" width="100" height="20" uuid="5ef98c38-3806-40bb-a715-e798f7118db8"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Faktur Po]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="455" y="13" width="100" height="20" uuid="ba1c95c1-6444-4830-9284-16133b9b887f"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="15" width="100" height="20" uuid="10e25f58-3a46-4acb-8a2b-737e0b31f193"/>
+				<text><![CDATA[id order]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="15" width="100" height="20" uuid="1fc56e13-e30b-4382-967b-e434a5797855"/>
+				<text><![CDATA[tgl po]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="103" y="15" width="100" height="20" uuid="cfa864d6-b4c5-42f8-aecd-dced3cd50e8a"/>
+				<text><![CDATA[id supplier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="15" width="100" height="20" uuid="f7f1a8f5-c5ce-4b75-9507-2d1aae3bdfff"/>
+				<text><![CDATA[nama supplier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="15" width="100" height="20" uuid="694d68a2-2b7e-4fc4-b7d0-7e0bd83a2547"/>
+				<text><![CDATA[id apoteker]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="296" y="15" width="100" height="20" uuid="6ca06832-ab19-4656-898b-a1ecda63268c"/>
+				<text><![CDATA[nama apoteker]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="15" width="100" height="20" uuid="f58fbba1-ecbb-4457-9026-90d5a55e9f38"/>
+				<text><![CDATA[kode obat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="15" width="100" height="20" uuid="760a9a5f-42b3-488c-b325-549994e46fcf"/>
+				<text><![CDATA[jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="15" width="100" height="20" uuid="10346968-eb76-4aa3-a072-77871d321ec4"/>
+				<text><![CDATA[total bayar]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="0" width="100" height="20" uuid="bb0871f4-f9a1-4acf-ae18-31eda295562e"/>
+				<textFieldExpression><![CDATA[$F{po_idorder}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="26" y="0" width="100" height="20" uuid="66a9f574-e083-4ef5-b166-c2a173ae8e9a"/>
+				<textFieldExpression><![CDATA[$F{po_tglpo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="0" width="100" height="20" uuid="3da70d92-7fdd-48ad-8043-f9fdfc1a8781"/>
+				<textFieldExpression><![CDATA[$F{po_po_idsupplier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="113" height="20" uuid="bae89fe0-3651-442f-9ec4-2a17adb90317"/>
+				<textFieldExpression><![CDATA[$F{supplier_namasupplier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="258" y="0" width="112" height="20" uuid="64af5a4f-eb02-4b95-9248-b63aa768dc83"/>
+				<textFieldExpression><![CDATA[$F{po_po_idapoteker}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="296" y="0" width="100" height="20" uuid="77b51847-e0a3-4934-a32a-ae99de3620a6"/>
+				<textFieldExpression><![CDATA[$F{apoteker_namaapoteker}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="378" y="0" width="100" height="20" uuid="1e060270-4e11-44f8-9a10-502b5def180d"/>
+				<textFieldExpression><![CDATA[$F{po_po_kodeobat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="0" width="100" height="20" uuid="fa7d733b-5685-46d5-81ab-1df84e8c6ae1"/>
+				<textFieldExpression><![CDATA[$F{po_po_jumlah}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="100" height="20" uuid="63e5e15f-5d9d-49b0-9b48-0e8ac9a0896a"/>
+				<textFieldExpression><![CDATA[$F{po_po_totalbayar}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="149" splitType="Stretch">
+			<staticText>
+				<reportElement x="432" y="55" width="100" height="20" uuid="cb5b9966-66ea-4acc-98eb-c1da4b292a40"/>
+				<text><![CDATA[APOTEK GREEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="451" y="97" width="100" height="20" uuid="1b038cff-d2b2-4631-96e9-532bde37799d"/>
+				<text><![CDATA[Apoteker]]></text>
+			</staticText>
+			<line>
+				<reportElement x="429" y="115" width="100" height="1" uuid="412ab60e-c427-4a3b-91cd-cba55d18e4c2"/>
+			</line>
+			<staticText>
+				<reportElement x="428" y="123" width="100" height="20" uuid="8be1673d-b9f6-4a25-826b-733c79450e8d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[No,SIPA/189800/kes/2022]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="55" width="100" height="20" uuid="71426632-aa30-4414-9aa3-0d340a573f4c"/>
+				<text><![CDATA[Supplier]]></text>
+			</staticText>
+			<line>
+				<reportElement x="13" y="114" width="100" height="1" uuid="dd46279b-48d6-4650-b6e9-909311acb516"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
